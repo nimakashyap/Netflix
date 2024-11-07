@@ -90,6 +90,8 @@ select show_id, type, title, cast(date_added as date) as date_added, release_yea
 into Netflix from cte 
 where rn = 1
 
+select * from netflix
+
 
 
 
