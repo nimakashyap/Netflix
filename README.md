@@ -67,6 +67,9 @@ group by director,country) m
 on nr.director = m.director
 where nr.country is null
 
+# checking missing value in python
+df.isna().sum()
+
 # data maping and fill missing value in duration (where duration is null)
 
 with cte as (
