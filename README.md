@@ -80,6 +80,16 @@ select show_id, type, title, cast(date_added as date) as date_added, release_yea
 from cte 
 where rn = 1
 
+## create final table added (into netflix in above query) 
+
+with cte as (
+select *, ROW_NUMBER()over (partition by title, type order by show_id) as rn 
+from netflix_raw)
+select show_id, type, title, cast(date_added as date) as date_added, release_year,rating
+,case when duration is null then  rating else duration end as duration, description
+into Netflix from cte 
+where rn = 1
+
 
 
 
