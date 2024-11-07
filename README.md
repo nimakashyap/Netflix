@@ -31,4 +31,35 @@ create table [dbo].[netflix_raw](
  # append the data in SQL database
 df.to_sql('netflix_raw', con=conn, index=False, if_exists='append')
 
+# --new table for listed in, director, country, cast
+
+select show_id, value as director into Netflix_director from netflix_raw cross apply string_split(director,',') 
+select show_id, value as country into Netflix_country from netflix_raw cross apply string_split(country,',')
+select show_id, value as cast into Netflix_cast from netflix_raw cross apply string_split(cast,',')
+select show_id, value as genre into Netflix_genre from netflix_raw cross apply string_split(listed_in,',')
+
+select * from Netflix_director
+select * from Netflix_country
+select * from Netflix_cast
+select * from Netflix_genre
+
+# 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
